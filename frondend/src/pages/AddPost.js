@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import axios from "axios";
 import "../components/css/AddPost.css"
 
-
+// To działa, ale w pierwszej lini wypchnij wszsytko na GitHub
 
 function AddPost() {
     const [title, setTitle] = useState("");
