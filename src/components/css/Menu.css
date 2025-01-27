@@ -1,0 +1,46 @@
+body {
+    margin: 0; /* Usuń domyślne marginesy */
+    display: flex; /* Flexbox dla całej strony */
+    justify-content: center; /* Wyśrodkuj w poziomie */
+    align-items: center; /* Wyśrodkuj w pionie */
+    height: 100vh; /* Ustaw wysokość na całą stronę */
+    font-family: Arial, sans-serif; /* Dodatkowe ustawienie czcionki */
+  }
+
+nav {
+    background-color: #f8f9fa; /* Jasne tło */
+    padding: 10px 20px; /* Odstępy wewnętrzne */
+    border-radius: 8px; /* Zaokrąglone rogi */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Lekki cień */
+  }
+  
+  nav ul {
+    list-style-type: none; /* Usuń punkty listy */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Ustaw elementy w jednej linii */
+    justify-content: center; /* Centruj linki w menu */
+  }
+  
+  nav li {
+    margin: 0 15px; /* Odstęp między linkami */
+  }
+  
+  nav li:last-child {
+    margin-right: 0; /* Brak odstępu po ostatnim elemencie */
+  }
+  
+  nav a {
+    text-decoration: none; /* Usuń podkreślenie */
+    color: hsla(14, 100%, 50%, 0.718); /* Kolor linków */
+    font-weight: bold;
+    font-size: 30px;
+     transition: color 0.3s ease; /* Animacja przy najechaniu */
+
+    
+  }
+  
+  nav a:hover {
+    color: #0056b3; /* Zmiana koloru po najechaniu */
+  }
+  

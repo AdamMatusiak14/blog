@@ -1,0 +1,52 @@
+.add-post-container {
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: center;
+  }
+  
+  .add-post-container h2 {
+    margin-bottom: 20px;
+  }
+  
+  .add-post-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .add-post-container form div {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  .add-post-container form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .add-post-container form input,
+  .add-post-container form textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .add-post-container form textarea {
+    height: 100px;
+  }
+  
+  .add-post-container form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .add-post-container form button:hover {
+    background-color: #0056b3;
+  }
+  
