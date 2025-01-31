@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+    <changeSet id="001-testdata-1" author="ad">
+        <insert tableName="post">
+            <column name="title" value="First" />
+            <column name="content" value="This is First Post" />
+            <column name="likes_count" value="0" />
+            <column name="dislike" value= "0" />
+        </insert>
+
+       <insert tableName="post">
+            <column name="title" value="Second" />
+            <column name="content" value="This is Second Post" />
+            <column name="likes_count" value="0" />
+            <column name="dislike" value= "0" />
+        </insert>
+
+        
+
+
+    </changeSet>
+</databaseChangeLog>

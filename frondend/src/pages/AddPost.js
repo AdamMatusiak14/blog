@@ -7,18 +7,20 @@ import "../components/css/AddPost.css"
 function AddPost() {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+    const like_count= 0;
+    const dislike = 0; 
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const postData = { title, content };
+    const postData = { title, content, like_count, dislike };
 
     try {
       // Wysyłanie żądania POST za pomocą Axios
-      const response = await axios.post("http://localhost:3000/api/posts", postData);
+      const response = await axios.post("http://localhost:8080/api/posts", postData);
 
-      if (response.status === 200) {
+      if (response.status) {
         alert("Post added successfully!");
         setTitle(""); // Resetowanie pola tytułu
         setContent(""); // Resetowanie pola treści
@@ -26,6 +28,9 @@ function AddPost() {
     } catch (error) {
       console.error("Error:", error);
       alert("An error occurred while adding the post.");
+
+      console.log(postData.title);
+      console.log(postData.content);
     }
   };
 

@@ -6,7 +6,12 @@ spring:
       hiddenmethod:
         filter:
           enabled: true
-  
+  web:
+    cors:
+      allowed-origins: "http://localhost:3000"
+      allowed-methods: "*"
+      allowed-headers: "*"
+
       
   jpa:
     show-sql: true

@@ -12,8 +12,8 @@
             <column
                 name="title" type="VARCHAR(100)" />
             <column name="content" type="VARCHAR(300)" />
-            <column name="like" type="BIGINT" />
-            <column name="dilike" type="BIGINT" />
+            <column name="likes_count" type="BIGINT" />
+            <column name="dislike" type="BIGINT" />
         </createTable>
 
     </changeSet>
