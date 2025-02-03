@@ -25,7 +25,7 @@ public class Post {
     private String title;
     private String content;
     @Column(name="likes_count")
-    private int likesCount;
-    private int dislike;
+    private int likesCount = 0;
+    private int dislike = 0;
     
 }
