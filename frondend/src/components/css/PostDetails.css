@@ -49,3 +49,19 @@
 .dislike-btn:hover {
     background-color: #c82333;
 }
+.vote-counters {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.like-counter {
+    color: #28a745; /* Zielony dla like */
+}
+
+.dislike-counter {
+    color: #dc3545; /* Czerwony dla dislike */
+}

@@ -6,6 +6,7 @@ import "../components/css/PostDetails.css";
 const PostDetails = () => {
     const { id } = useParams();
     const [post, setPost] = useState(null);
+    const [totalVotes, setTotalVotes] = useState(0);
 
     useEffect(() => {
         axios.get(`http://localhost:8080/api/posts/${id}`)
@@ -33,6 +34,10 @@ const PostDetails = () => {
         <div className="post-details">
             <h2>{post.title}</h2>
             <p>{post.content}</p>
+            <div className="vote-counters">
+                <p className="like-counter">Likes:{post.likesCount}</p>
+                <p className="dislike-counter">Dislike: {post.dislike}</p>
+            </div>
             <div className="buttons">
                 <button className="like-btn" onClick={handleLike}>👍 Like</button>
                 <button className="dislike-btn" onClick={handleDislike}>👎 Dislike</button>
