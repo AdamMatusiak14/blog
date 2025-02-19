@@ -1,5 +1,6 @@
-package ad.java.model;
+package ad.blog.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,13 +16,16 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="user_id")
-public class User {
-
+@Table(name ="post")
+public class Post {
+ 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String username;
-    private String password;
+    private String title;
+    private String content;
+    @Column(name="likes_count")
+    private int likesCount = 0;
+    private int dislike = 0;
     
 }

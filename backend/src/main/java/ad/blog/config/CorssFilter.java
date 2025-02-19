@@ -1,4 +1,4 @@
-package ad.java.config;
+package ad.blog.config;
 
 import java.util.List;
 

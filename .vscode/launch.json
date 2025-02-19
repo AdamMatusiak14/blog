@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "BlogApplication",
+            "request": "launch",
+            "mainClass": "ad.blog.BlogApplication",
+            "projectName": "blog"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-BlogApplication<blog>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
