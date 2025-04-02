@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
+import ad.blog.service.CustomDetailsService;
+
 import java.util.Date;
 import java.util.function.Function;
 
@@ -18,10 +20,10 @@ import javax.crypto.SecretKey;
 public class JwtTokenProvider {
     private final SecretKey key = Jwts.SIG.HS256.key().build();
     private final long validityInMs = 3600000; // 1 godzina
-    private final UserDetailsService userDetailsService;
+    private final CustomDetailsService userDetailsService;
 
-    
-    public JwtTokenProvider(UserDetailsService userDetailsService) {
+   
+    public JwtTokenProvider(CustomDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 

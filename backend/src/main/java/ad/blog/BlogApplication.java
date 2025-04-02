@@ -4,13 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan(basePackages = "ad.blog.service")
-@ComponentScan(basePackages = "ad.java.security")
-@ComponentScan(basePackages = "ad.java.controller")
-@SpringBootApplication
- @ComponentScan("ad.java.config")
- @ComponentScan("ad.java.controller")
- @ComponentScan("ad.blog.service")
+// @ComponentScan(basePackages = "ad.blog.service")
+// @ComponentScan(basePackages = "ad.blog.security")
+// @ComponentScan(basePackages = "ad.blog.controller")
+// @ComponentScan(basePackages = "ad.blog.config")
+@SpringBootApplication (scanBasePackages = "ad.blog")
 
 public class BlogApplication {
 

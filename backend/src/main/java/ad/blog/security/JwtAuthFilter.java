@@ -11,6 +11,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import ad.blog.service.CustomDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,22 +19,23 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-// tu jestesś, ale wogule nie wchodzi w ten filtr
+
 @Component
 public class JwtAuthFilter extends OncePerRequestFilter {
     private final JwtTokenProvider jwtTokenProvider;
-    private final UserDetailsService userDetailsService;
+    private final CustomDetailsService userDetailsService;
 
     @Autowired
-    public JwtAuthFilter(JwtTokenProvider jwtTokenProvider, UserDetailsService userDetailsService) {
+    public JwtAuthFilter(JwtTokenProvider jwtTokenProvider, CustomDetailsService userDetailsService) {
         this.jwtTokenProvider = jwtTokenProvider;
         this.userDetailsService = userDetailsService;
     }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+       
         String token = getTokenFromRequest(request);
-
+        System.out.println("Jestem filtrem JwtAuthFilter prze ifem");
         
         if (token != null && jwtTokenProvider.validateToken(token)) {
             System.out.println("Jestem filtrem JwtAuthFilter");

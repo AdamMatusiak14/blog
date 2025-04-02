@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import NavbarLogin from "./NavbarLogin";
 
 function Menu() {
   return (
+    
     <div className="menu-container">
+      <NavbarLogin />
     <nav>
       <ul>
         <li><Link to="/addPost">Add Post</Link></li>
