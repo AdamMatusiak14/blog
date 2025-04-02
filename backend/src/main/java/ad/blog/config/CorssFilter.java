@@ -1,4 +1,4 @@
-package ad.java.config;
+package ad.blog.config;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 @Configuration
-public class CorssFilter {  // Dodałeś go do projektu i wszytko działa proawidłowo
+public class CorssFilter {  
        @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();

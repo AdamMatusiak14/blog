@@ -6,18 +6,12 @@ spring:
       hiddenmethod:
         filter:
           enabled: true
-  web:
-    cors:
-      allowed-origins: "http://localhost:3000"
-      allowed-methods: "*"
-      allowed-headers: "*"
+  
 
-      
   jpa:
     show-sql: true
     hibernate: 
         ddl-auto: none
-       
   h2:
     console:
       enabled: true
@@ -26,4 +20,12 @@ spring:
   liquibase:
     change-log: classpath:db/master.xml
     enabled: true
+    
+logging:
+  level:
+  #  org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+
+ 
+
 

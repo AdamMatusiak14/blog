@@ -1,12 +1,12 @@
-package ad.java.service;
+package ad.blog.service;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import ad.java.model.Post;
-import ad.java.repository.PostRepository;
+import ad.blog.model.Post;
+import ad.blog.repository.PostRepository;
 
 @Service
 public class PostService {
