@@ -39,10 +39,13 @@ public class JwtTokenProvider {
 
     public boolean validateToken(String token) {
         try {
-            String username = extractUsername(token);
-            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-            return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
+            // String username = extractUsername(token);
+            // UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+            // return username.equals(userDetails.getUsername()) && !isTokenExpired(token); 
+            Jwts.parser().verifyWith(key).build().parseSignedClaims(token);
+            return !isTokenExpired(token);
         } catch (Exception e) {
+            System.out.println("Token niepoprawny: " + e.getMessage());
             return false;
         }
     }

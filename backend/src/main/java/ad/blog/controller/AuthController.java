@@ -49,8 +49,10 @@ public class AuthController {
 
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
           SecurityContextHolder.getContext().setAuthentication(authentication);
+          System.out.println("Username: " + authentication.getName());
 
-          String token = jwtTokenProvider.generateToken(authentication.getPrincipal().getClass().getName());
+          //String token = jwtTokenProvider.generateToken(authentication.getPrincipal().getClass().getName());
+          String token = jwtTokenProvider.generateToken(request.getUsername());
 
           System.out.println("Token: " + token);
             

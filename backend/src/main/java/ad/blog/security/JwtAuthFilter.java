@@ -17,6 +17,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Collections;
 
 
 
@@ -34,9 +35,20 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
        
-        String token = getTokenFromRequest(request);
+
+        System.out.println("Nagłówki: " + Collections.list(request.getHeaderNames()));
+        System.out.println("Authorization Header: " + request.getHeader("Authorization")); 
+
+
+       String token = getTokenFromRequest(request);
+      //String token = request.getHeader("Authorization");
+      System.out.println("Token: " + token);
+
+
         System.out.println("Jestem filtrem JwtAuthFilter prze ifem");
         
+
+
         if (token != null && jwtTokenProvider.validateToken(token)) {
             System.out.println("Jestem filtrem JwtAuthFilter");
             String username = jwtTokenProvider.extractUsername(token);

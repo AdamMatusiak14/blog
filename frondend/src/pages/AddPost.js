@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import axios from "axios";
 import "../components/css/AddPost.css"
+import token from "../components/token.js"
 
 // To działa, ale w pierwszej lini wypchnij wszsytko na GitHub
 
@@ -18,7 +19,7 @@ function AddPost() {
 
     try {
       // Wysyłanie żądania POST za pomocą Axios
-      const response = await axios.post("http://localhost:8080/api/posts", postData);
+      const response = await token.post("/posts", postData);
 
       if (response.status) {
         alert("Post added successfully!");
