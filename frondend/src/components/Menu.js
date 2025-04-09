@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import NavbarLogin from "./NavbarLogin";
+import token from "./token"; // Import token for authentication
 
 function Menu() {
   return (

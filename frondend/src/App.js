@@ -10,6 +10,7 @@ import Chat from "./pages/Chat";
 import Weather from "./pages/Weather";
 import PostDetails from "./pages/PostDetails";
 import LoginPage from "./pages/Login-page";
+import token from './components/token';
 
 
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "../components/css/PostDetails.css";
+import token from "../components/token";
 
 const PostDetails = () => {
     const { id } = useParams();
@@ -9,20 +10,20 @@ const PostDetails = () => {
     const [totalVotes, setTotalVotes] = useState(0);
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/api/posts/${id}`)
+        token.get(`/posts/${id}`)
             .then(response => setPost(response.data))
             .catch(error => console.error("Błąd pobierania posta:", error));
     }, [id]);
-
+// Jest adres ale nie ma tokena
 
     const handleLike = () => {
-        axios.post(`http://localhost:8080/api/posts/${id}/like`)
+        token.post(`/posts/${id}/like`)
             .then(response => setPost(response.data))
             .catch(error => console.error("Błąd podczas like:", error));
     };
 
     const handleDislike = () => {
-        axios.post(`http://localhost:8080/api/posts/${id}/dislike`)
+        token.post(`/posts/${id}/dislike`)
             .then(response => setPost(response.data))
             .catch(error => console.error("Błąd podczas dislike:", error));
     };

@@ -3,7 +3,7 @@ import {Link} from  "react-router-dom";
 import "./css/NavbarLogin.css"
 
 
-
+// Pasek logowania
 
 function NavbarLogin () 
 
