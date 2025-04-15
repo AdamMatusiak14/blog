@@ -12,7 +12,7 @@ function Menu() {
       <ul>
         <li><Link to="/addPost">Add Post</Link></li>
         <li><Link to="/listPosts">List of Post</Link></li>
-        <li><Link to="/chat">Chat</Link></li>
+        <li><Link to="/users">Chat</Link></li>
         <li><Link to="/weather">Weather</Link></li>
       </ul>
     </nav>

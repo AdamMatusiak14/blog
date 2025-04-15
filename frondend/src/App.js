@@ -6,11 +6,12 @@ import Menu from "./components/Menu";
 import "./components/css/Menu.css"
 import AddPost from "./pages/AddPost";
 import PostList from "./pages/PostList";
-import Chat from "./pages/Chat";
+import ChatWindow from "./pages/ChatWindow";
 import Weather from "./pages/Weather";
 import PostDetails from "./pages/PostDetails";
 import LoginPage from "./pages/Login-page";
 import token from './components/token';
+import UserList from "./pages/UserList";
 
 
 
@@ -24,8 +25,9 @@ function App() {
           <Route path="/addPost" element={<AddPost />} />
           <Route path="/listPosts" element={<PostList />} />
           <Route path="post/:id" element={<PostDetails />} />
-          <Route path="/chat" element={<Chat />} />
+          <Route path="/chat" element={<ChatWindow />} />
           <Route path="/weather" element={<Weather />} />
+          <Route path="/users" element={<UserList />} />
         </Routes>
     </Router>
   );

@@ -14,6 +14,16 @@
              <column name="password" value="$2a$12$Tl1t0bDIhkpposbG5JTrBOUot..BXsHJcbt56Y3W/IvBjKc8OiTEq" /> <!--guily-->
         </insert>
 
+         <insert tableName="user_id">
+                <column name="username" value="Vulcan" />
+             <column name="password" value="$2a$12$SaxDLiKLYRc4sa7bomBJhuxNzSQSfEPavm78wyJqLID9dwRpHwfma" /> <!--salamander-->
+        </insert>
+
+
+         <insert tableName="user_id">
+                <column name="username" value="Leman" />
+             <column name="password" value="$2a$12$KavrqzdszmnoCU4npsR/p.m4bXEQO.SFAOrwdSlH3.D8J2rZ7zbvi" /> <!--wolf-->
+        </insert>
         
 
 

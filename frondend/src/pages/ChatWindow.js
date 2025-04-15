@@ -1,7 +1,7 @@
 import React from "react";
 
-function Chat() {
+function ChatWindow() {
   return <h2>Welcome to the Chat!</h2>;
 }
 
-export default Chat;
+export default ChatWindow;
