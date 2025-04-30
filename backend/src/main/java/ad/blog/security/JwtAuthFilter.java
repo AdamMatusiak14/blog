@@ -41,10 +41,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
 
        String token = getTokenFromRequest(request);
-      //String token = request.getHeader("Authorization");
-      System.out.println("Token: " + token);
+     
+        if(token == null){
+            token = request.getParameter("token");
+            System.out.println("Token z parametru: " + token);
+        }
 
-
+        System.out.println("Token: " + token);
         System.out.println("Jestem filtrem JwtAuthFilter prze ifem");
         
 
@@ -58,8 +61,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
+
         
+    
+
         filterChain.doFilter(request, response);
+   
+
     }
 
     private String getTokenFromRequest(HttpServletRequest request) {
