@@ -38,6 +38,7 @@ public class CustomHandhsakeInterceptor implements HandshakeInterceptor {
         
         //JwtTokenProvider jwtTokenProvider = new JwtTokenProvider();
         if(token != null && jwtTokenProvider.validateToken(token)) {
+            System.out.println("Zwraca true");
             return true;    }
             return false;
         }

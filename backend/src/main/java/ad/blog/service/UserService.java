@@ -33,4 +33,9 @@ public List<AppUser> getAllUsers() {
 
 }
 
+public AppUser findByUsername(String username) {
+    return userRespository.findByUsername(username);
+
+}
+
 }

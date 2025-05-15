@@ -46,13 +46,23 @@ useEffect(() => {
       onConnect: () => {
         console.log("Connected to WebSocket");
         stompClient.subscribe("/topic/messages", (message) => {
-          const receivedMessage = JSON.parse(message.body);
-          setMessages(prevMessages => [...prevMessages, receivedMessage]);
+          const receivedMessage = JSON.parse(message.body); 
+          console.log("Username Reciver message:", receivedMessage.sender.username); // Log the received message
+          const transformedMessage = {
+            senderUsername: receivedMessage.sender.username,
+            receiverUsername: receivedMessage.receiver.username,
+            content: receivedMessage.content,
+            timestamp: receivedMessage.timestamp,
+          };
+          if(transformedMessage.senderUsername !== loggedInUser){
+            setMessages ((prevMessages) => [...prevMessages, transformedMessage]); 
+            console.log("Received message:", receivedMessage); // Log the received message
+          }
         });
       },
       onDisconnect: () => {
         console.log("Disconnected from WebSocket");
-      },
+      }, 
     });
 
     stompClient.activate();
@@ -84,18 +94,24 @@ const closeChat = () => {
   const handleSendMessage = () => { 
     if(newMessage.trim() && stompClientRef.current && stompClientRef.current.connected) {
       const message = {
-        sender: loggedInUser,
-        receiver: selectedUser.username,
+        senderUsername: loggedInUser,
+        receiverUsername: selectedUser.username,
         content: newMessage.trim(),
-        //timestamp: new Date().toISOString() // but is in backend
+       // timestamp: new Date().toISOString() // but is in backend
       };
 
-      stompClientRef.current.publish({
+      console.log("Sennder:", message.senderUsername);
+      console.log("Reciver:", message.receiverUsername); // Log the message being sent
+
+     
+       stompClientRef.current.publish({
         destination: "/app/chat",
         body: JSON.stringify(message), 
-            
       });
-      setMessages(prevMessages => [...prevMessages, message]); // Add the sent message to the chat window
+      console.log("Message sent:", message); // Log the sent message
+
+      setMessages((prevMessages) => [...prevMessages, message]); // Add the sent message to the chat window
+        
       setNewMessage(""); // Clear the input field after sending 
     } else{
       console.error("Stomp client is not connected or message is empty.");
@@ -131,22 +147,47 @@ const closeChat = () => {
           flexDirection: 'column',
         }}>
           <h3>Chat with {selectedUser.username}</h3>
-          <p>Logged in as: {loggedInUser.username}</p>
+          <p>Logged in as: {loggedInUser}</p>
           <div style={{
             flex: 1,
             overflowY: 'auto',
             border: '1px solid #ccc',
             marginBottom: '10px',
             padding: '5px',
+            display: 'flex',
+            flexDirection: 'column',
           }}>
-            {messages.map((msg, index) => (
-              <div key={index} style={{ marginBottom: '5px' }}>
-                <strong>{msg.sender === loggedInUser ? "You" : msg.sender}:</strong> {msg.content}
-              </div>
-            ))}
-          </div>
+            {messages.map((msg, index) => {
+               console.log("Comparing:", msg.senderUsername, "with", loggedInUser, "Result:", msg.senderUsername === loggedInUser);
+               return (
+             <div 
+             key={index} 
+             style={{
+               display: 'flex',
+               justifyContent: msg.senderUsername === loggedInUser ? 'flex-start' : 'flex-end',
+               margin: '10px 0',}}
+               >
+              <div
+                style={{
+                 maxWidth: '70%',
+                  padding: '10px', 
+                  borderRadius: '15px',
+                  backgroundColor: msg.senderUsername === loggedInUser ? '#d1e7dd' : '#f8d7da',
+                  color: msg.senderUsername  === loggedInUser ? '#0f5132' : '#842029',
+                  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                  wordWrap: 'break-word', 
+                  }}>
 
-
+                
+                <strong>{"You"}</strong>
+          
+               
+                <p style= {{ margin: '0' }}>{msg.content}</p>
+                </div>
+                </div>
+               );
+            })}
+            </div>
 
           <textarea 
                rows="3"
