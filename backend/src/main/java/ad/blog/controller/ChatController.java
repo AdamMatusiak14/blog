@@ -1,11 +1,16 @@
 package ad.blog.controller;
 
 
+import java.util.List;
+
 import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import ad.blog.DTO.ChatMessageDTO;
 import ad.blog.model.AppUser;
@@ -13,7 +18,7 @@ import ad.blog.model.ChatMessage;
 import ad.blog.service.MessageService;
 import ad.blog.service.UserService;
 
-@Controller
+@RestController
 public class ChatController {
 
     private final MessageService messageService;
@@ -40,4 +45,19 @@ public class ChatController {
     
         return messageService.saveMessage(chatMessage);
     }
+
+
+    @GetMapping("/api/messages/between")
+    public List<ChatMessage> getChatBetween(@RequestParam String senderUsername, @RequestParam String receiverUsername) {
+        AppUser sender = userService.findByUsername(senderUsername);
+        AppUser receiver = userService.findByUsername(receiverUsername);
+
+        return messageService.getChatBetween(sender, receiver);
+    }
+
+    @GetMapping("/api/messages/user")
+    public List<ChatMessage> getAllMessagesForUser(@RequestParam String senderUsername) {
+        AppUser user = userService.findByUsername(senderUsername);
+        return messageService.getAllMessagesForUser(user);
+    } // Teraz niech tekst
 }

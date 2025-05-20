@@ -11,6 +11,7 @@ const UserList = () => {
   const [messages, setMessages] = useState([]); // State to hold messages
   const [newMessage, setNewMessage] = useState(""); // State to hold new message input
   const stompClientRef = useRef(null); // Ref to hold the socket connection
+  const messagesEndRef = useRef(null); // Ref to scroll to the bottom of the chat window
 
 
   useEffect(() => {
@@ -31,6 +32,12 @@ const UserList = () => {
       .catch(error => console.error("Błąd pobierania użytkowników:", error));
   }, []);
 
+
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight; 
+    }
+  }, [messages]); // Scroll to the bottom when messages change
 
 useEffect(() => {
   
@@ -80,7 +87,23 @@ useEffect(() => {
   const handleUserClick = (user) => 
 {
   setSelectedUser(user);
-  setMessages([]); // Clear messages when a new user is selected
+ //  const storedToken = sessionStorage.getItem("token");
+  console.log("This is receiver: ", user.username); 
+  token.get(`/messages/user?senderUsername=${loggedInUser}`) 
+  // &receiverUsername=${user.username}`) 
+    .then((response) => {
+      const formatted = response.data.map((msg) => ({
+        senderUsername: msg.sender.username,
+        receiverUsername: msg.receiver.username,
+        content: msg.content,
+        timestamp: msg.timestamp,
+      }));
+      setMessages(formatted);
+    })
+    .catch((err) => {
+      console.error("Błąd pobierania wiadomości:", err);
+      setMessages([]);
+    });
 };
   
 const closeChat = () => {
@@ -156,7 +179,7 @@ const closeChat = () => {
             padding: '5px',
             display: 'flex',
             flexDirection: 'column',
-          }}>
+          }} ref = {messagesEndRef}>
             {messages.map((msg, index) => {
                console.log("Comparing:", msg.senderUsername, "with", loggedInUser, "Result:", msg.senderUsername === loggedInUser);
                return (
