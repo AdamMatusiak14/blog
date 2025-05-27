@@ -6,6 +6,7 @@ import java.util.stream.*;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ad.blog.model.AppUser;
@@ -14,12 +15,15 @@ import ad.blog.repository.AppUserRespository;
 
 
 
+
 @Service
 public class UserService {
 
 AppUserRespository userRespository;
+PasswordEncoder passwordEncoder;
 
-public UserService(AppUserRespository userRespository) {
+public UserService(AppUserRespository userRespository, PasswordEncoder passwordEncoder) {
+    this.passwordEncoder = passwordEncoder;
     this.userRespository = userRespository;
 }   
 
@@ -38,4 +42,9 @@ public AppUser findByUsername(String username) {
 
 }
 
+public AppUser createUser(AppUser user) {
+    user.setPassword(passwordEncoder.encode(user.getPassword()));
+    return userRespository.save(user);  
+
+}
 }

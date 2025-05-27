@@ -58,6 +58,7 @@ public class SecurityConfig {
             .requestMatchers(h2ConsoleRequestMatcher).permitAll()
             .requestMatchers("/konsola-h2/**").permitAll()
             .requestMatchers("/api/auth/**").permitAll()
+            .requestMatchers("/api/users/create").permitAll()
             .requestMatchers("/ws/**").permitAll()
             //.requestMatchers("/ws/**/**").permitAll()
             .anyRequest().authenticated()

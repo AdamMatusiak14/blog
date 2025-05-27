@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import axios from "axios";
 import "../components/css/AddPost.css"
+import NavbarLogin from "../components/NavbarLogin";
 import token from "../components/token.js"
 
 // To działa, ale w pierwszej lini wypchnij wszsytko na GitHub
@@ -37,6 +38,7 @@ function AddPost() {
 
   return (
     <div className="add-post-container">
+      <NavbarLogin />
       <h2>Add New Post</h2>
       <form onSubmit={handleSubmit}>
         <div>

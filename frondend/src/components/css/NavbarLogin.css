@@ -8,20 +8,30 @@
     color: white;
     padding: 0 1rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     z-index: 1000;
    
   
   }
+
+  .navbarlogin-buttons {
+    display: flex;
+    gap: 10px;
+}
   
   .navbarlogin button {
+
     background-color: #3b82f6; /* Tailwind: bg-blue-500 */
     height: 35px;
-    font-size: 6px !important;
+    font-size: 14px !important;
     border-radius: 3px;
-    margin-left: auto;
     text-transform: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 0 16px;
+    transition: background 0.2s;
    
   }
 
