@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "../components/css/AuthForms.css"; // Import stylów
 
 function LoginPage() {
   const [login, setLogin] = useState("");
@@ -61,7 +62,7 @@ function LoginPage() {
   
 
   return (
-    <div className="login-container">
+    <div className="auth-form-container">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div>

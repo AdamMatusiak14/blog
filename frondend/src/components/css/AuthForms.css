@@ -1,0 +1,72 @@
+.auth-form-container {
+  background-color: #f8f9fa;
+  padding: 32px 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 340px;
+  margin: 40px auto;
+}
+
+.auth-form-container h2 {
+  margin-bottom: 24px;
+  color: hsla(14, 100%, 50%, 0.8);
+  font-size: 2rem;
+}
+
+.auth-form-container form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.auth-form-container label {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.auth-form-container input[type="text"],
+.auth-form-container input[type="password"] {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.auth-form-container input:focus {
+  border: 1.5px solid hsla(14, 100%, 50%, 0.7);
+}
+
+.auth-form-container button {
+  background-color: hsla(14, 100%, 50%, 0.8);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.auth-form-container button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.auth-form-container button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.auth-form-container p {
+  margin-top: 16px;
+  color: #b30000;
+  font-weight: bold;
+  text-align: center;
+}

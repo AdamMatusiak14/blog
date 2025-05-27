@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import token from "../components/token.js";
 import axios from "axios";
+import "../components/css/AuthForms.css"; // Import stylów
 
 const RegistrationPage = () => {
   const [form, setForm] = useState({ username: "", password: "" });
@@ -43,7 +44,7 @@ const RegistrationPage = () => {
   };
 
   return (
-    <div>
+    <div className="auth-form-container">
       <h2>Rejestracja</h2>
       <form onSubmit={handleSubmit}>
         <div>
