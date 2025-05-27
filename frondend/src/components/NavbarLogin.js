@@ -10,11 +10,25 @@ function NavbarLogin ()
 
 {
   const navigate = useNavigate();
+  const isLoggedIn = !!sessionStorage.getItem("token");;
+
+   const handleLogout = () => {
+    sessionStorage.removeItem("token");
+    navigate("/");
+  };
+
   return (
     <nav className="navbarlogin">
       <div className="navbarlogin-buttons">
-     <button onClick={() => navigate("/login")}>Login</button>
-     <button onClick={() => navigate("/register")}>Register</button>
+        {isLoggedIn ? (
+          <button onClick={handleLogout}>Logout</button>
+        ) : (
+          <>
+          <button onClick={() => navigate("/login")}>Login</button>
+          <button onClick={() => navigate("/register")}>Register</button>
+         </>
+        )}
+     
      </div>
     </nav>
   );
