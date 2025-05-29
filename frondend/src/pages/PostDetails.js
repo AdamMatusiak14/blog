@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "../components/css/PostDetails.css";
@@ -8,6 +8,10 @@ const PostDetails = () => {
     const { id } = useParams();
     const [post, setPost] = useState(null);
     const [totalVotes, setTotalVotes] = useState(0);
+    const [commentContent, setCommentContent] = useState("");
+    const [error, setError] = useState("");
+
+
 
     useEffect(() => {
         token.get(`/posts/${id}`)
@@ -29,6 +33,24 @@ const PostDetails = () => {
     };
 
 
+    const handleAddComment = (e) => {
+        e.preventDefault();
+        if (!commentContent.trim()) return;
+
+        token.post(`/posts/${id}/comments`, { content: commentContent })
+            .then(response => {
+                console.log("Komentarz dodany:", response.data);
+                setPost(prev => ({
+                    ...prev,
+                    comments: [...prev.comments, response.data]
+                }));
+                setCommentContent("");
+                setError("");
+            })
+            .catch(() => setError("Błąd podczas dodawania komentarza."));
+    };
+
+
     if (!post) return <p>Loading...</p>;
 
     return (
@@ -43,6 +65,36 @@ const PostDetails = () => {
                 <button className="like-btn" onClick={handleLike}>👍 Like</button>
                 <button className="dislike-btn" onClick={handleDislike}>👎 Dislike</button>
              </div>
+
+              {/* Sekcja komentarzy */}
+            <div className="comments-section">
+                <h3>Komentarze</h3>
+                {post.comments && post.comments.length > 0 ? (
+                    <ul>
+                        {post.comments.map(comment => (
+                            <li key={comment.id}>
+                                {comment.content}
+                                {/* Możesz dodać np. autora: {comment.author?.username} */}
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p>Brak komentarzy.</p>
+                )}
+
+                {/* Formularz dodawania komentarza */}
+                <form onSubmit={handleAddComment} className="add-comment-form">
+                    <textarea
+                        value={commentContent}
+                        onChange={e => setCommentContent(e.target.value)}
+                        placeholder="Dodaj komentarz..."
+                        rows={3}
+                        required
+                    />
+                    <button type="submit">Dodaj komentarz</button>
+                    {error && <p className="error">{error}</p>}
+                </form>
+            </div>
         </div>
     );
 };

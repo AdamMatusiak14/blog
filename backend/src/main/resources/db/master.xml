@@ -5,6 +5,7 @@
     <include file="001_create_table_post.xml" relativeToChangelogFile="true" />
     <include file="002_create_table_user.xml" relativeToChangelogFile="true" />
     <include file="003_create_table_message.xml" relativeToChangelogFile="true" />
+    <include file="004_create_table_comment.xml" relativeToChangelogFile="true" />
      <include file="testdata/001_posts.xml" relativeToChangelogFile="true" />
     <include file="testdata/002_user.xml" relativeToChangelogFile="true" /> 
 
