@@ -11,6 +11,7 @@
             </column>
             <column name="username" type="VARCHAR(100)" />
             <column name="password" type="VARCHAR(100)" />
+            <column name="role" type="VARCHAR(50)" />
         </createTable>
 
     </changeSet>

@@ -6,23 +6,32 @@
         <insert tableName="user_id">
             <column name="username" value="Magnus" />
             <column name="password" value="     $2a$12$PznsprV00L1tyhuPrFlgreZFS49NKUMyIfHcZTR3flhTB3DpT0pky" /><!--red-->
-           
+             <column name="role" value="USER" />           
         </insert>
 
        <insert tableName="user_id">
                 <column name="username" value="Robute" />
              <column name="password" value="$2a$12$Tl1t0bDIhkpposbG5JTrBOUot..BXsHJcbt56Y3W/IvBjKc8OiTEq" /> <!--guily-->
+             <column name="role" value="USER" />  
         </insert>
 
          <insert tableName="user_id">
                 <column name="username" value="Vulcan" />
              <column name="password" value="$2a$12$SaxDLiKLYRc4sa7bomBJhuxNzSQSfEPavm78wyJqLID9dwRpHwfma" /> <!--salamander-->
+             <column name="role" value="USER" />  
         </insert>
 
 
          <insert tableName="user_id">
                 <column name="username" value="Leman" />
              <column name="password" value="$2a$12$KavrqzdszmnoCU4npsR/p.m4bXEQO.SFAOrwdSlH3.D8J2rZ7zbvi" /> <!--wolf-->
+             <column name="role" value="USER" />  
+        </insert>
+
+          <insert tableName="user_id">
+                <column name="username" value="Imperator" />
+             <column name="password" value="$2a$12$FwhKQ2XhQWig6RIN6/I.JuNxiTuAjEfjMiL7bgHW7LZNDOkiOvr8K" /> <!--great-->
+             <column name="role" value="ADMIN" />  
         </insert>
         
 
