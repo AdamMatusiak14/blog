@@ -38,7 +38,9 @@ public ResponseEntity<Post> addPost(@RequestBody Post post){
 public List<Post> getAllPosts()
 {
     System.out.println("Tu metoda getAllPosts()");
-   return postService.getAllPosts();
+    List <Post> posts =  postService.getAllPosts();
+    System.out.println("Posts: " + posts);
+    return posts;
     
 }
 

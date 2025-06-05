@@ -10,6 +10,7 @@ const PostDetails = () => {
     const [totalVotes, setTotalVotes] = useState(0);
     const [commentContent, setCommentContent] = useState("");
     const [error, setError] = useState("");
+    const [comments, setComments] = useState([]);
 
 
 
@@ -17,8 +18,12 @@ const PostDetails = () => {
         token.get(`/posts/${id}`)
             .then(response => setPost(response.data))
             .catch(error => console.error("Błąd pobierania posta:", error));
+
+        token.get(`/posts/${id}/comments`)
+            .then(response => setComments(response.data))
+            .catch(error => console.error("Błąd pobierania komentarzy:", error));    
     }, [id]);
-// Jest adres ale nie ma tokena
+    
 
     const handleLike = () => {
         token.post(`/posts/${id}/like`)
@@ -40,10 +45,9 @@ const PostDetails = () => {
         token.post(`/posts/${id}/comments`, { content: commentContent })
             .then(response => {
                 console.log("Komentarz dodany:", response.data);
-                setPost(prev => ({
-                    ...prev,
-                    comments: [...prev.comments, response.data]
-                }));
+                setComments(prev => [...prev, response.data]);
+               // console.log("Komentarz dodany:", [...comments, response.data]);
+                console.log("To jest komentarz:", comments); 
                 setCommentContent("");
                 setError("");
             })
@@ -69,20 +73,20 @@ const PostDetails = () => {
               {/* Sekcja komentarzy */}
             <div className="comments-section">
                 <h3>Komentarze</h3>
-                {post.comments && post.comments.length > 0 ? (
+                {comments.length > 0 ? (
                     <ul>
-                        {post.comments.map(comment => (
+                        {comments.map(comment => (
                             <li key={comment.id}>
+
                                 {comment.content}
-                                {/* Możesz dodać np. autora: {comment.author?.username} */}
+                               
                             </li>
                         ))}
                     </ul>
                 ) : (
                     <p>Brak komentarzy.</p>
                 )}
-
-                {/* Formularz dodawania komentarza */}
+                           {/* Formularz dodawania komentarza */}
                 <form onSubmit={handleAddComment} className="add-comment-form">
                     <textarea
                         value={commentContent}

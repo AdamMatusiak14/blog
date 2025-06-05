@@ -1,5 +1,7 @@
 package ad.blog.service;
 
+import java.util.List;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -37,5 +39,10 @@ public class CommentService {
                 comment.setPost(post);
                 comment.setAuthor(user);
         return commentRepository.save(comment) ; // Placeholder return statement
+    }
+
+
+    public List<Comment> getCommentsByPostId(Long postId) {
+        return commentRepository.findAllByPostId(postId);
     }
 }
