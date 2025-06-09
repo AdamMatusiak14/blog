@@ -4,6 +4,7 @@ public class AuthRequest {
     private String username;
     private String password;
 
+
     public AuthRequest() {}
 
     public AuthRequest(String username, String password) {
@@ -26,4 +27,5 @@ public class AuthRequest {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }

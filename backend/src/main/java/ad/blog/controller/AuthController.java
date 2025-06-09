@@ -2,6 +2,7 @@ package ad.blog.controller;
 
 import java.security.Security;
 
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -51,8 +52,14 @@ public class AuthController {
           SecurityContextHolder.getContext().setAuthentication(authentication);
           System.out.println("Username: " + authentication.getName());
 
-          //String token = jwtTokenProvider.generateToken(authentication.getPrincipal().getClass().getName());
-          String token = jwtTokenProvider.generateToken(request.getUsername());
+        UserDetails userDetails = userDetailsService.loadUserByUsername(request.getUsername());
+        String role = userDetails.getAuthorities().stream()
+                .findFirst()
+                .map(auth -> auth.getAuthority())
+                .orElse("ROLE_USER"); // Domyślna rola, jeśli nie znaleziono
+
+          System.out.println("Rola: " + role);
+          String token = jwtTokenProvider.generateToken(request.getUsername(), role); 
 
           System.out.println("Token: " + token);
             

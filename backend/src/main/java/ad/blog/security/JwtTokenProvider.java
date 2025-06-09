@@ -27,9 +27,10 @@ public class JwtTokenProvider {
         this.userDetailsService = userDetailsService;
     }
 
-    public String generateToken(String username) {
+    public String generateToken(String username, String role) {
         return Jwts.builder()
         .subject(username)
+        .claim("role", role)
         .issuedAt(new Date())
         .expiration(new Date(System.currentTimeMillis() + validityInMs))
         .signWith(key, Jwts.SIG.HS256) // Trzeba jawnie podać algorytm
@@ -70,6 +71,14 @@ public class JwtTokenProvider {
         return expiration.before(new Date());
     }
     
+    public String extractRole(String token) {
+    return Jwts.parser()
+        .verifyWith(key)
+        .build()
+        .parseSignedClaims(token)
+        .getPayload()
+        .get("role", String.class);
+}
 }
 
 
