@@ -14,6 +14,7 @@ import RegisterPage from "./pages/Registration-page";
 import token from './components/token';
 import UserList from "./pages/UserList";
 import AdminPanel from "./pages/AdminPanel";
+import DeletePost from './pages/admin/DeletePost';
 
 
 
@@ -31,7 +32,8 @@ function App() {
           <Route path="/chat" element={<ChatWindow />} />
           <Route path="/weather" element={<Weather />} />
           <Route path="/users" element={<UserList />} />
-          <Route path="/admin" element={AdminPanel} />
+          <Route path="/admin" element={<AdminPanel />} />
+          <Route path="/admin/posts" element={<DeletePost />} />
     
         </Routes>
     </Router>
