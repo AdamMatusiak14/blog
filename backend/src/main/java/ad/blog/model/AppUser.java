@@ -2,6 +2,8 @@ package ad.blog.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,6 +30,7 @@ public class AppUser {
     private String password;
     private String role;
     @OneToMany(mappedBy = "author")
+    @JsonIgnore
     private List<Comment> comments;
     
 }

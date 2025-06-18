@@ -11,6 +11,7 @@ const PostDetails = () => {
     const [commentContent, setCommentContent] = useState("");
     const [error, setError] = useState("");
     const [comments, setComments] = useState([]);
+    const [showComments, setShowComments] = useState(false);
 
 
 
@@ -18,10 +19,7 @@ const PostDetails = () => {
         token.get(`/posts/${id}`)
             .then(response => setPost(response.data))
             .catch(error => console.error("Błąd pobierania posta:", error));
-
-        token.get(`/posts/${id}/comments`)
-            .then(response => setComments(response.data))
-            .catch(error => console.error("Błąd pobierania komentarzy:", error));    
+         
     }, [id]);
     
 
@@ -54,6 +52,15 @@ const PostDetails = () => {
             .catch(() => setError("Błąd podczas dodawania komentarza."));
     };
 
+    const handleShowComments = () => {
+    if (!showComments) {
+        token.get(`/posts/${id}/comments`)
+            .then(response => setComments(response.data))
+            .catch(error => console.error("Błąd pobierania komentarzy:", error));
+    }
+    setShowComments(!showComments);
+};
+
 
     if (!post) return <p>Loading...</p>;
 
@@ -70,7 +77,12 @@ const PostDetails = () => {
                 <button className="dislike-btn" onClick={handleDislike}>👎 Dislike</button>
              </div>
 
+              <button onClick= {handleShowComments} className="toggle-comments-btn">
+                     {showComments ? "Ukryj komentarze" : "See comment"}
+                </button>
+
               {/* Sekcja komentarzy */}
+              {showComments && (
             <div className="comments-section">
                 <h3>Komentarze</h3>
                 {comments.length > 0 ? (
@@ -99,6 +111,7 @@ const PostDetails = () => {
                     {error && <p className="error">{error}</p>}
                 </form>
             </div>
+              )}
         </div>
     );
 };

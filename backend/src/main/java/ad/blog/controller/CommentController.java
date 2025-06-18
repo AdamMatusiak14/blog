@@ -42,12 +42,14 @@ public class CommentController {
     public ResponseEntity<List<CommentDTO>>getCommentsByPostId(@PathVariable Long postId) { 
         List<Comment> comments = commentService.getCommentsByPostId(postId); 
        
-
+        System.out.println("This is the getCommentsByPostId method in CommentController");
         List<CommentDTO> commentDTOs = comments.stream().map(comment -> {
             CommentDTO commentDTO = new CommentDTO();
             commentDTO.setId(comment.getId());
             commentDTO.setContent(comment.getContent());
-            commentDTO.setAuthor(comment.getAuthor().getUsername());
+           // commentDTO.setAuthor(comment.getAuthor().getUsername()); // CommentDTO jest zwracany bez autora
+            commentDTO.setAuthor(comment.getAuthor() != null ? comment.getAuthor().getUsername() : "Unknown Author");
+         
             return commentDTO;
         }).toList();
         return ResponseEntity.ok(commentDTOs); 

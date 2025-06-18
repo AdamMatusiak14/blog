@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import ad.blog.DTO.UserDTO;
 import ad.blog.model.AppUser;
 import ad.blog.repository.AppUserRespository;
 
@@ -37,6 +38,12 @@ public List<AppUser> getAllUsers() {
 
 }
 
+public List<UserDTO> getAllUsersDTO() {
+    return getAllUsers().stream()
+        .map(user -> new UserDTO(user.getId(), user.getUsername(), user.getRole()))
+        .collect(Collectors.toList());
+}
+
 public AppUser findByUsername(String username) {
     return userRespository.findByUsername(username);
 
@@ -45,6 +52,12 @@ public AppUser findByUsername(String username) {
 public AppUser createUser(AppUser user) {
     user.setPassword(passwordEncoder.encode(user.getPassword()));
     return userRespository.save(user);  
+
+}
+
+public void deleteUser(Long id) {
+    AppUser user = userRespository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+    userRespository.delete(user);
 
 }
 }

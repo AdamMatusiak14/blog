@@ -3,6 +3,7 @@ import token from '../components/token';
 import {jwtDecode} from 'jwt-decode'; 
 import { Client } from '@stomp/stompjs'; 
 import SockJS from 'sockjs-client';
+import  '../components/css/UserList.css'; // Import your CSS file for styling
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -13,7 +14,7 @@ const UserList = () => {
   const stompClientRef = useRef(null); // Ref to hold the socket connection
   const messagesEndRef = useRef(null); // Ref to scroll to the bottom of the chat window
 
-
+// GET USERS
   useEffect(() => {
    
     const storedToken = sessionStorage.getItem("token");
@@ -33,12 +34,15 @@ const UserList = () => {
   }, []);
 
 
+ // Scroll to the bottom when messages change
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight; 
     }
-  }, [messages]); // Scroll to the bottom when messages change
+  }, [messages]);
 
+
+  // CONNECT TO WEBSOCKET
 useEffect(() => {
   
   if (selectedUser) {
@@ -84,6 +88,7 @@ useEffect(() => {
 }, [selectedUser]);
   
 
+// GET THE MESSAGES FROM DATABASE
   const handleUserClick = (user) => 
 {
   setSelectedUser(user);
@@ -141,16 +146,16 @@ const closeChat = () => {
     }  }; // Closing brace added here
 
   return (
-    <div>
-      <h2>Użytkownicy</h2>
-      <ul>
+    <div className = "user-list-container">
+      <h2 className="user-list-title">Użytkownicy</h2>
+      <ul className="user-list">
         {users.map(u => (
           <li 
           key={u.id}
           onClick={()=> handleUserClick(u)}
           style={{cursor: 'pointer', color: 'blue'}}
           >
-            {u.username}
+           <span className="user-list-username"> {u.username} </span>
          </li>
         ))}
       </ul>
@@ -201,9 +206,9 @@ const closeChat = () => {
                   wordWrap: 'break-word', 
                   }}>
 
-                
-                <strong>{"You"}</strong>
-          
+                {/*
+                <strong>{ loggedInUser ? 'You' : selectedUser}</strong>
+          */}
                
                 <p style= {{ margin: '0' }}>{msg.content}</p>
                 </div>

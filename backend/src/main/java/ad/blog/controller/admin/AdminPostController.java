@@ -1,4 +1,4 @@
-package ad.blog.controller;
+package ad.blog.controller.admin;
 
 import java.util.List;
 

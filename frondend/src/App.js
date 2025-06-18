@@ -15,6 +15,7 @@ import token from './components/token';
 import UserList from "./pages/UserList";
 import AdminPanel from "./pages/AdminPanel";
 import DeletePost from './pages/admin/DeletePost';
+import DeleteUsers from './pages/admin/DeleteUsers';
 
 
 
@@ -34,6 +35,7 @@ function App() {
           <Route path="/users" element={<UserList />} />
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/admin/posts" element={<DeletePost />} />
+          <Route path="/admin/users" element={<DeleteUsers />} />
     
         </Routes>
     </Router>

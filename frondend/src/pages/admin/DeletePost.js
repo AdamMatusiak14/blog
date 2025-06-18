@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import token from "../../components/token"; // Import token for authentication
+import "../../components/css/DeletePost.css"; // Import CSS for styling
 
 function DeletePost() {
   const [posts, setPosts] = useState([]);
@@ -23,13 +24,13 @@ function DeletePost() {
   };
 
   return (
-    <div>
+    <div className="delete-post-container">
       <h2>Usuń post</h2>
-      <ul>
+      <ul className="delete-post-list">  
         {posts.map((post) => (
           <li key={post.id}>
-            {post.title}{" "}
-            <button onClick={() => handleDelete(post.id)}>Usuń</button>
+            <span className="delete-post-title">{post.title}{" "}</span> 
+            <button className="delete-post-btn" onClick={() => handleDelete(post.id)}>Usuń</button>
           </li>
         ))}
       </ul>
