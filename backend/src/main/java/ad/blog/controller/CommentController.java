@@ -25,8 +25,6 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    
-
     @PostMapping("/posts/{postId}/comments")
     public ResponseEntity<CommentDTO> addComment(@RequestBody Comment comment, @PathVariable Long postId) {
         Comment saveComment = commentService.addComment(comment, postId);
@@ -54,4 +52,6 @@ public class CommentController {
         }).toList();
         return ResponseEntity.ok(commentDTOs); 
     }
+    
+    
 }

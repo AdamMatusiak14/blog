@@ -16,6 +16,7 @@ import UserList from "./pages/UserList";
 import AdminPanel from "./pages/AdminPanel";
 import DeletePost from './pages/admin/DeletePost';
 import DeleteUsers from './pages/admin/DeleteUsers';
+import DeleteComments from './pages/admin/DeleteComments';
 
 
 
@@ -36,6 +37,7 @@ function App() {
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/admin/posts" element={<DeletePost />} />
           <Route path="/admin/users" element={<DeleteUsers />} />
+          <Route path="/admin/comments" element={<DeleteComments/>} />
     
         </Routes>
     </Router>

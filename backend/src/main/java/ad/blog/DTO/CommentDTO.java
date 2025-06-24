@@ -5,6 +5,15 @@ public class CommentDTO {
     private Long id;
     private String content;
     private String author;
+
+    public CommentDTO() {
+    }
+
+    public CommentDTO(Long id, String content, String author) {
+        this.id = id;
+        this.content = content;
+        this.author = author;
+    }
     
     public Long getId() {
         return id;

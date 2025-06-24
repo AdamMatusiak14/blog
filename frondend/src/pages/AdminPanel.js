@@ -13,6 +13,9 @@ function AdminPanel() {
         <li>
           <Link className="admin-link-block"  to="/admin/users">Usuwanie Użytkowników</Link>
         </li>
+         <li>
+          <Link className="admin-link-block"  to="/admin/comments">Usuwanie Komentarzy</Link>
+        </li>
       </ul>
     </div>
   );

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+    <changeSet id="004-testdata-1" author="ad">
+
+       <insert tableName="comment">
+                <column name="content" value="This is a comment from Robute." />
+             <column name="post_id" value="1" />
+             <column name="user_id" value="2" />
+        </insert>
+
+        <insert tableName="comment">
+                <column name="content" value="This is a comment from Robute." />
+             <column name="post_id" value="1" />
+             <column name="user_id" value="2" />
+        </insert>
+
+        <insert tableName="comment">
+                <column name="content" value="This is a comment from Vulcan." />
+             <column name="post_id" value="1" />
+             <column name="user_id" value="3" />
+        </insert>
+
+        <insert tableName="comment">
+                <column name="content" value="This is a comment from Leman." />
+             <column name="post_id" value="1" />
+             <column name="user_id" value="4" />
+        </insert>
+
+        <insert tableName="comment">
+                <column name="content" value="This is a comment from Imperator." />
+             <column name="post_id" value="1" />
+             <column name="user_id" value="5" />
+        </insert>
+
+    </changeSet>
+</databaseChangeLog>
