@@ -18,6 +18,8 @@ public class MessageService {
         this.chatRepository = chatRepository;
     }
 
+
+    
     public ChatMessage saveMessage(ChatMessage message) {
         return chatRepository.save(message);
     }
