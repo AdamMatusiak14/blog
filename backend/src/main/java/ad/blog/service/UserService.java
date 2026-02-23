@@ -30,6 +30,9 @@ public UserService(AppUserRespository userRespository, PasswordEncoder passwordE
 
 public List<AppUser> getAllUsers() {
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    if(auth==null){
+        throw new IllegalStateException("No authenticated user found");
+    }   
     String username = auth.getName();
     List<AppUser> users =  userRespository.findAll(); 
     return users.stream().

@@ -17,3 +17,6 @@ public class BlogApplication {
 	}
 
 }
+
+
+// odpal w folderze backend mvn clean package i zobaczysz co się stanie
