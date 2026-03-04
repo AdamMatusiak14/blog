@@ -18,13 +18,14 @@ import javax.crypto.SecretKey;
 
 @Component
 public class JwtTokenProvider {
-    private final SecretKey key = Jwts.SIG.HS256.key().build();
+    private SecretKey key = Jwts.SIG.HS256.key().build();
     private final long validityInMs = 3600000; // 1 godzina
     private final CustomDetailsService userDetailsService;
 
    
-    public JwtTokenProvider(CustomDetailsService userDetailsService) {
+    public JwtTokenProvider(CustomDetailsService userDetailsService, SecretKey key) {
         this.userDetailsService = userDetailsService;
+        this.key = key;
     }
 
     public String generateToken(String username, String role) {
@@ -40,9 +41,7 @@ public class JwtTokenProvider {
 
     public boolean validateToken(String token) {
         try {
-            // String username = extractUsername(token);
-            // UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-            // return username.equals(userDetails.getUsername()) && !isTokenExpired(token); 
+           
             Jwts.parser().verifyWith(key).build().parseSignedClaims(token);
             return !isTokenExpired(token);
         } catch (Exception e) {

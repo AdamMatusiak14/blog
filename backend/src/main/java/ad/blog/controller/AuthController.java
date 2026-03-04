@@ -1,4 +1,4 @@
-package ad.blog.controller;
+ package ad.blog.controller;
 
 import java.security.Security;
 
@@ -40,15 +40,21 @@ public class AuthController {
 
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody AuthRequest request) {
+    public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
        
             System.out.println("Jestem kontrolerem authController");
             System.out.println("Login: "+ request.getUsername());
             System.out.println("Haslo: "+ request.getPassword());
+            Authentication authentication = null;
 
 
-
-            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
+      try{
+             authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
+      } catch (RuntimeException e) {
+            return ResponseEntity
+            .status(HttpStatus.UNAUTHORIZED)
+            .body(new AuthResponse("Authentication failed: " + e.getMessage()));
+      }
           SecurityContextHolder.getContext().setAuthentication(authentication);
           System.out.println("Username: " + authentication.getName());
 
