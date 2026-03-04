@@ -27,8 +27,8 @@ public class CommentController {
 
     @PostMapping("/posts/{postId}/comments")
     public ResponseEntity<CommentDTO> addComment(@RequestBody Comment comment, @PathVariable Long postId) {
-        Comment saveComment = commentService.addComment(comment, postId);
-      CommentDTO commentDTO = new CommentDTO();
+         Comment saveComment = commentService.addComment(comment, postId);
+        CommentDTO commentDTO = new CommentDTO();
         commentDTO.setId(saveComment.getId());  
         commentDTO.setContent(saveComment.getContent());
         commentDTO.setAuthor(saveComment.getAuthor().getUsername());
@@ -40,7 +40,7 @@ public class CommentController {
     public ResponseEntity<List<CommentDTO>>getCommentsByPostId(@PathVariable Long postId) { 
         List<Comment> comments = commentService.getCommentsByPostId(postId); 
        
-        System.out.println("This is the getCommentsByPostId method in CommentController");
+      
         List<CommentDTO> commentDTOs = comments.stream().map(comment -> {
             CommentDTO commentDTO = new CommentDTO();
             commentDTO.setId(comment.getId());
